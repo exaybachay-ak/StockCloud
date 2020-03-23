@@ -40,41 +40,158 @@ pattern9 = re.compile(r'\s[a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z]\b')
 
 stocks = []
 
+# Ask the user to enter their desired sort type and limit
+sorttype = input("What type of sort do you want (hot, new, top, or rising):\n")
 
-### --> Get submissions from WSB to parse for stock names
-for submission in reddit.subreddit('wallstreetbets').hot(limit=1):
-    submission.comments.replace_more(limit=0)
-    for comment in submission.comments.list():
-        match1 = re.match(pattern1, comment.body)
-        match2 = re.match(pattern2, comment.body)
-        match3 = re.match(pattern3, comment.body)
-        match4 = re.match(pattern4, comment.body)
-        match5 = re.match(pattern5, comment.body)
-        match6 = re.match(pattern6, comment.body)
-        match7 = re.match(pattern7, comment.body)
-        match8 = re.match(pattern8, comment.body)
-        match9 = re.match(pattern9, comment.body)
-        if(match1):
-            stocks.append(match1.group(0))
-        elif(match2):
-            stocks.append(match2.group(0))
-        elif(match3):
-            stocks.append(match3.group(0))
-        elif(match4):
-            stocks.append(match4.group(0))
-        elif(match5):
-            stocks.append(match5.group(0))
-        elif(match6):
-            stocks.append(match6.group(0))
-        elif(match7):
-            stocks.append(match7.group(0))
-        elif(match8):
-            stocks.append(match8.group(0))
-        elif(match9):
-            stocks.append(match9.group(0))
-        else:
-            pass
+while True:
+    try:
+        sortlimit = int(input("What amount of data do you want back (enter a number, up to 100 posts):\n"))
+        if sortlimit < 1 or sortlimit > 101:
+            raise ValueError 
+        break
+    except:
+        print("Invalid selection.  The number must be between 1 and 100.")
 
+### --> Get submissions from WSB hot to parse for stock names
+if sorttype == "Hot" or sorttype == "hot":
+    for submission in reddit.subreddit('wallstreetbets').hot(limit=sortlimit):
+        submission.comments.replace_more(limit=0)
+        for comment in submission.comments.list():
+            match1 = re.match(pattern1, comment.body)
+            match2 = re.match(pattern2, comment.body)
+            match3 = re.match(pattern3, comment.body)
+            match4 = re.match(pattern4, comment.body)
+            match5 = re.match(pattern5, comment.body)
+            match6 = re.match(pattern6, comment.body)
+            match7 = re.match(pattern7, comment.body)
+            match8 = re.match(pattern8, comment.body)
+            match9 = re.match(pattern9, comment.body)
+            if(match1):
+                stocks.append(match1.group(0))
+            elif(match2):
+                stocks.append(match2.group(0))
+            elif(match3):
+                stocks.append(match3.group(0))
+            elif(match4):
+                stocks.append(match4.group(0))
+            elif(match5):
+                stocks.append(match5.group(0))
+            elif(match6):
+                stocks.append(match6.group(0))
+            elif(match7):
+                stocks.append(match7.group(0))
+            elif(match8):
+                stocks.append(match8.group(0))
+            elif(match9):
+                stocks.append(match9.group(0))
+            else:
+                pass
+
+### --> Get submissions from WSB hot to parse for stock names
+elif sorttype == "New" or sorttype == "new":
+    for submission in reddit.subreddit('wallstreetbets').new(limit=sortlimit):
+        submission.comments.replace_more(limit=0)
+        for comment in submission.comments.list():
+            match1 = re.match(pattern1, comment.body)
+            match2 = re.match(pattern2, comment.body)
+            match3 = re.match(pattern3, comment.body)
+            match4 = re.match(pattern4, comment.body)
+            match5 = re.match(pattern5, comment.body)
+            match6 = re.match(pattern6, comment.body)
+            match7 = re.match(pattern7, comment.body)
+            match8 = re.match(pattern8, comment.body)
+            match9 = re.match(pattern9, comment.body)
+            if(match1):
+                stocks.append(match1.group(0))
+            elif(match2):
+                stocks.append(match2.group(0))
+            elif(match3):
+                stocks.append(match3.group(0))
+            elif(match4):
+                stocks.append(match4.group(0))
+            elif(match5):
+                stocks.append(match5.group(0))
+            elif(match6):
+                stocks.append(match6.group(0))
+            elif(match7):
+                stocks.append(match7.group(0))
+            elif(match8):
+                stocks.append(match8.group(0))
+            elif(match9):
+                stocks.append(match9.group(0))
+            else:
+                pass
+
+### --> Get submissions from WSB hot to parse for stock names
+if sorttype == "Top" or sorttype == "top":
+    for submission in reddit.subreddit('wallstreetbets').top(limit=sortlimit):
+        submission.comments.replace_more(limit=0)
+        for comment in submission.comments.list():
+            match1 = re.match(pattern1, comment.body)
+            match2 = re.match(pattern2, comment.body)
+            match3 = re.match(pattern3, comment.body)
+            match4 = re.match(pattern4, comment.body)
+            match5 = re.match(pattern5, comment.body)
+            match6 = re.match(pattern6, comment.body)
+            match7 = re.match(pattern7, comment.body)
+            match8 = re.match(pattern8, comment.body)
+            match9 = re.match(pattern9, comment.body)
+            if(match1):
+                stocks.append(match1.group(0))
+            elif(match2):
+                stocks.append(match2.group(0))
+            elif(match3):
+                stocks.append(match3.group(0))
+            elif(match4):
+                stocks.append(match4.group(0))
+            elif(match5):
+                stocks.append(match5.group(0))
+            elif(match6):
+                stocks.append(match6.group(0))
+            elif(match7):
+                stocks.append(match7.group(0))
+            elif(match8):
+                stocks.append(match8.group(0))
+            elif(match9):
+                stocks.append(match9.group(0))
+            else:
+                pass
+
+
+### --> Get submissions from WSB hot to parse for stock names
+if sorttype == "Rising" or sorttype == "rising":
+    for submission in reddit.subreddit('wallstreetbets').rising(limit=sortlimit):
+        submission.comments.replace_more(limit=0)
+        for comment in submission.comments.list():
+            match1 = re.match(pattern1, comment.body)
+            match2 = re.match(pattern2, comment.body)
+            match3 = re.match(pattern3, comment.body)
+            match4 = re.match(pattern4, comment.body)
+            match5 = re.match(pattern5, comment.body)
+            match6 = re.match(pattern6, comment.body)
+            match7 = re.match(pattern7, comment.body)
+            match8 = re.match(pattern8, comment.body)
+            match9 = re.match(pattern9, comment.body)
+            if(match1):
+                stocks.append(match1.group(0))
+            elif(match2):
+                stocks.append(match2.group(0))
+            elif(match3):
+                stocks.append(match3.group(0))
+            elif(match4):
+                stocks.append(match4.group(0))
+            elif(match5):
+                stocks.append(match5.group(0))
+            elif(match6):
+                stocks.append(match6.group(0))
+            elif(match7):
+                stocks.append(match7.group(0))
+            elif(match8):
+                stocks.append(match8.group(0))
+            elif(match9):
+                stocks.append(match9.group(0))
+            else:
+                pass
 
 ### --------------------------------->>> Download stocks <<<---------------------------------   ###
 
@@ -146,7 +263,7 @@ for r in realstocks:
 #Commenting this out - shouldn't need to sort if it's in a word cloud
 sortedstockcloud = sorted(stockcloud.items(), key=lambda x: (x[1],x[0]), reverse=True)
 
-### --------------------------------->>> Generate text visualization <<<---------------------------------   ###
+### --------------------------------->>> Generate command-line visualization <<<---------------------------------   ###
 index = ['Frequency']
 index2 = [1]
 df = pd.DataFrame(stockcloud, index=index)
@@ -155,7 +272,6 @@ df2 = pd.DataFrame(sortedstockcloud, columns=['Word','frequency'])
 #Display the data
 print(df)
 print(df2)
-
 
 ### --------------------------------->>> Generate image visualization <<<---------------------------------   ###
 
@@ -176,9 +292,10 @@ stopwords = set(STOPWORDS)
 wordcloud = WordCloud(collocations=False, width = 1200, height = 1200, background_color ='white', stopwords = stopwords, min_font_size = 10).generate(listToStr)
 
 # plot the WordCloud image                        
-plt.figure(figsize = (8, 8), facecolor = None)
+fig = plt.figure(figsize = (8, 8), facecolor = None)
+fig.canvas.set_window_title("Looking at WallStreetBets " + sorttype + " sort, with " + str(sortlimit) + " post\(s\)")
 plt.imshow(wordcloud)
-plt.axis("off")
+plt.axis("off") 
 plt.tight_layout(pad = 0)
 
 plt.show()
