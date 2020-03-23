@@ -145,9 +145,8 @@ for r in realstocks:
 #Sort the dict by most occurrances first
 #Commenting this out - shouldn't need to sort if it's in a word cloud
 sortedstockcloud = sorted(stockcloud.items(), key=lambda x: (x[1],x[0]), reverse=True)
-print(sortedstockcloud)
 
-### --------------------------------->>> Generate visualization <<<---------------------------------   ###
+### --------------------------------->>> Generate text visualization <<<---------------------------------   ###
 index = ['Frequency']
 index2 = [1]
 df = pd.DataFrame(stockcloud, index=index)
@@ -156,3 +155,30 @@ df2 = pd.DataFrame(sortedstockcloud, columns=['Word','frequency'])
 #Display the data
 print(df)
 print(df2)
+
+
+### --------------------------------->>> Generate image visualization <<<---------------------------------   ###
+
+stocknums = [lis[1] for lis in sortedstockcloud]
+stocknames = [lis[0] for lis in sortedstockcloud]
+stockscloud = []
+
+#expand stocks into a cloud list
+for idx, num in enumerate(stocknums):
+   for i in range(0,int(num)):
+      stockscloud.append(stocknames[idx])
+
+listToStr = ' '.join([str(elem) for elem in stockscloud]) 
+
+# read stock list and define wordcloud
+df = pd.DataFrame(stocks)
+stopwords = set(STOPWORDS)
+wordcloud = WordCloud(collocations=False, width = 1200, height = 1200, background_color ='white', stopwords = stopwords, min_font_size = 10).generate(listToStr)
+
+# plot the WordCloud image                        
+plt.figure(figsize = (8, 8), facecolor = None)
+plt.imshow(wordcloud)
+plt.axis("off")
+plt.tight_layout(pad = 0)
+
+plt.show()
