@@ -239,7 +239,7 @@ with open('allformatted.txt', 'r') as alf:
     cnt = 1
     while line:
         for s in stocks:
-            match = re.search(s + '\s', line, re.IGNORECASE)
+            match = re.search(r'\b' + s + '\s', line, re.IGNORECASE)
             if match:
                 realstocks.append(s)
         line = alf.readline()
@@ -293,7 +293,7 @@ wordcloud = WordCloud(collocations=False, width = 1200, height = 1200, backgroun
 
 # plot the WordCloud image                        
 fig = plt.figure(figsize = (8, 8), facecolor = None)
-fig.canvas.set_window_title("Looking at WallStreetBets " + sorttype + " sort, with " + str(sortlimit) + " post\(s\)")
+fig.canvas.set_window_title("Looking at WallStreetBets " + sorttype + " sort, with " + str(sortlimit) + " post(s)")
 plt.imshow(wordcloud)
 plt.axis("off") 
 plt.tight_layout(pad = 0)
